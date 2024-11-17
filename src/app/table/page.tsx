@@ -201,12 +201,12 @@ const TableComponent = () => {
       </Card>
 
       {viewType === "table" ? (
-  <Table dataSource={filteredData} columns={columns} />
-) : (
- <>
- <HoverCard/>
- </>
-)}
+        <Table dataSource={filteredData} columns={columns} />
+      ) : (
+        <>
+          <HoverCard />
+        </>
+      )}
 
       <CreateForm visible={visible} cancel={handleCancel} />
       <Modal
