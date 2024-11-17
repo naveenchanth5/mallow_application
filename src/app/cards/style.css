@@ -1,0 +1,35 @@
+.card-container {
+  width: 300px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.hover-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-content {
+  padding: 16px;
+  text-align: center;
+}
+
+.card-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1; /* Ensures the buttons are above other content */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-card:hover .card-actions {
+  opacity: 1; /* Show actions on hover */
+}
+
+.hover-card:hover {
+  z-index: 2; /* Ensure the card itself appears above others on hover */
+}
