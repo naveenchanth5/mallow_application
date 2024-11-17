@@ -12,6 +12,8 @@ interface User {
 }
 const HoverCard = () => {
   const [userData, setuserData] = useState([]);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   useEffect(() => {
     fetchUsers().then((val: any) => {
       setuserData(val.data);
@@ -20,6 +22,11 @@ const HoverCard = () => {
 
   const fetchUsers = async (): Promise<User[]> => {
     return apiCall<User[]>("/users", "GET");
+  };
+
+    const handleCancel = () => {
+    setIsModalVisible(false)
+    setVisible(false);
   };
 
   // fetchUsers()
@@ -44,10 +51,10 @@ const HoverCard = () => {
                   <p>{val.email}</p>
                 </div>
                 <div className="card-actions">
-                  <Button type="primary" icon={<EditOutlined />} size="small">
+                  <Button type="primary" icon={<EditOutlined />} size="small"  onClick={() => setVisible(true)}>
                     Edit
                   </Button>
-                  <Button danger icon={<DeleteOutlined />} size="small">
+                  <Button danger icon={<DeleteOutlined />} size="small" onClick={() => setIsModalVisible(true)}>
                     Delete
                   </Button>
                 </div>
@@ -57,6 +64,19 @@ const HoverCard = () => {
         </Col>
            ))}
       </Row>
+       <CreateForm visible={visible} cancel={handleCancel} />
+
+      <Modal
+        title="Confirm Deletion"
+        open={isModalVisible}
+        onCancel={handleCancel}
+        okText="Delete"
+        cancelText="Cancel"
+        cancelButtonProps={{ type: "default" }}
+        okButtonProps={{ danger: true }}
+      >
+        <p>Are you sure you want to delete</p>
+      </Modal>
     </>
   );
 };
