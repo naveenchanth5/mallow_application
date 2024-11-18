@@ -208,22 +208,7 @@ const TableComponent = () => {
         </>
       )}
 
-      <CreateForm visible={visible} cancel={handleCancel} />
-      <Modal
-        title="Confirm Deletion"
-        open={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Delete"
-        cancelText="Cancel"
-        cancelButtonProps={{ type: "default" }}
-        okButtonProps={{ danger: true }}
-      >
-        <p>
-          Are you sure you want to delete {deleteRecord?.firstName}{" "}
-          {deleteRecord?.lastName}?
-        </p>
-      </Modal>
+     
     </div>
   );
 };
